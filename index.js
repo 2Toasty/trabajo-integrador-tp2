@@ -1,5 +1,5 @@
 import express from "express";
-import Router from "./src/routes/products.route.js";
+import Router from "./src/routes/heroes.route.js";
 import MongoConnection from "./src/models/MongoConnection.js"
 
 const app = express();

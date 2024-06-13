@@ -1,6 +1,6 @@
-class ProductsModelMemory {
+class HeroesModelMemory {
     constructor() {
-        this.products = [
+        this.Heroes = [
             {
               id: 1,
               nombre: "Monitor",
@@ -16,9 +16,9 @@ class ProductsModelMemory {
           ];
     }
 
-    getProducts = async () => {
-      return this.products;
+    getHeroes = async () => {
+      return this.Heroes;
     };
   }
   
-  export default ProductsModelMemory;
+  export default HeroesModelMemory;
