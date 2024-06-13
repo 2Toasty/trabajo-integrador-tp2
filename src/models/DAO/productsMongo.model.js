@@ -6,7 +6,7 @@ class ProductsModelMongoDB {
     }
 
     getProducts = async () => {
-      const products = await MongoConnection.db.collection("products").find({}).toArray()
+      const products = await MongoConnection.db.collection("heroes").find({}).toArray()
       return products;
     };
   
@@ -15,7 +15,7 @@ class ProductsModelMongoDB {
     };
 
     postProduct = async (prod) => {
-      const newProduct = await MongoConnection.db.collection("products").insertOne(prod)
+      const newProduct = await MongoConnection.db.collection("heroes").insertOne(prod)
       return newProduct
     };
   }
