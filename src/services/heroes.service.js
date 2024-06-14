@@ -3,7 +3,7 @@ import config from "../../config.js";
 
 class HeroesServices {
     constructor() {
-      this.model = ModelFactory.get(config.PERSISTENCE);
+      this.model = ModelFactory.get(config.PERSISTENCE).heroes;
     }
   
     getHeroes = async () => {
@@ -18,7 +18,7 @@ class HeroesServices {
     postHeroe = async (prod) => {
       const Heroe = await this.model.postHeroe(prod)
       return Heroe
-    };
+    }; 
   }
   
   export default HeroesServices;

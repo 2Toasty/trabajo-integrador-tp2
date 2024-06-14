@@ -1,7 +1,7 @@
-import UsersController from "../controllers/users.controller.js";
+import UsersController from '../controllers/users.controller.js';
 import express from 'express';
 
-class Router {
+class UsersRouter {
     constructor() {
       this.router = express.Router();
       this.controller = new UsersController();
@@ -9,11 +9,11 @@ class Router {
   
     start() {
       this.router.get("/users", this.controller.getUsers);
-      this.router.get("/users/:id", this.controller.getUseresById);
-      this.router.post("/users", this.controller.postUsers);
+      this.router.get("/users/:id", this.controller.getUsersById);
+      this.router.post("/users", this.controller.postUser);
 
       return this.router;
     }
   }
   
-  export default Router;
+  export default UsersRouter;

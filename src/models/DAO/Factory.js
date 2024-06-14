@@ -1,6 +1,7 @@
 import HeroesModelMemory from "./heroesMemory.model.js";
 import HeroesModelMongoDB from "./heroesMongo.model.js";
 import UsersModelMongoDB from "./usersMongo.model.js";
+import MongoConnection from "../MongoConnection.js";
 
 class ModelFactory{
 
@@ -11,7 +12,10 @@ class ModelFactory{
                 return new HeroesModelMemory();
             case 'MONGO':
                 console.log('Persistiendo en la memoria de MongoDB!')
-                return new HeroesModelMongoDB();
+                return {
+                    heroes: new HeroesModelMongoDB(),
+                    users: new UsersModelMongoDB()
+                  };
             default:
                 console.log('Persistiendo en ... Default!')
                 return new HeroesModelMemory();

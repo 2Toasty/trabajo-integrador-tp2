@@ -3,7 +3,7 @@ import config from "../../config.js";
 
 class UsersServices {
     constructor() {
-      this.model = ModelFactory.get(config.PERSISTENCE);
+      this.model = ModelFactory.get(config.PERSISTENCE).users;
     }
   
     getUsers = async () => {

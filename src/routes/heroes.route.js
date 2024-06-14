@@ -1,7 +1,7 @@
 import HeroesController from "../controllers/heroes.controller.js";
 import express from 'express';
 
-class Router {
+class HeroesRouter {
     constructor() {
       this.router = express.Router();
       this.controller = new HeroesController();
@@ -16,4 +16,4 @@ class Router {
     }
   }
   
-  export default Router;
+  export default HeroesRouter;
