@@ -1,4 +1,5 @@
 import UsersServices from "../services/users.service.js";
+import MailSender from "../models/MailSender.js";
 
 class UsersController {
     constructor() {
@@ -21,7 +22,7 @@ class UsersController {
       const result = await this.services.postUser(newUser)
 
       if(result.acknowledged == true){
-        console.log("envio un mail")
+        MailSender.sendMail(req.body.mail);
       }
 
       res.send(result)

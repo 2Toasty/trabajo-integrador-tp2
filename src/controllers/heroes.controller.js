@@ -19,7 +19,6 @@ class HeroesController {
     postHeroe = async (req, res) => {
       const newHeroe = req.body
       const prod = await this.services.postHeroe(newHeroe)
-      //Solo el controlador maneja la respuesta del servidor
       res.send(prod)
     };
 }
