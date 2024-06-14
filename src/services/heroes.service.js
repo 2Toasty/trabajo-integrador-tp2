@@ -12,12 +12,13 @@ class HeroesServices {
     };
   
     getHeroesById = async (id) => {
-
+      const Heroes = await this.model.getHeroesById(id);
+      return Heroes;
     };
 
-    postHeroe = async (prod) => {
-      const Heroe = await this.model.postHeroe(prod)
-      return Heroe
+    postHeroe = async (heroe) => {
+      const result = await this.model.postHeroe(heroe)
+      return result
     }; 
   }
   

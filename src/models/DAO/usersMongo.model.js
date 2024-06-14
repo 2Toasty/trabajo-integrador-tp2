@@ -11,7 +11,8 @@ class UsersModelMongoDB {
     };
   
     getUsersById = async (id) => {
-
+      const Users = await MongoConnection.db.collection("users").find({id : id}).toArray()
+      return Users;
     };
 
     postUser = async (user) => {

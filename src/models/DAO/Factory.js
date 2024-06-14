@@ -1,7 +1,6 @@
 import HeroesModelMemory from "./heroesMemory.model.js";
 import HeroesModelMongoDB from "./heroesMongo.model.js";
 import UsersModelMongoDB from "./usersMongo.model.js";
-import MongoConnection from "../MongoConnection.js";
 
 class ModelFactory{
 

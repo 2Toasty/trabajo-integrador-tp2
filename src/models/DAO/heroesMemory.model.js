@@ -3,15 +3,15 @@ class HeroesModelMemory {
         this.Heroes = [
             {
               id: 1,
-              nombre: "Monitor",
+              nombre: "Iron Man",
             },
             {
               id: 2,
-              nombre: "Teclado",
+              nombre: "Batman",
             },
             {
               id: 3,
-              nombre: "Mouse",
+              nombre: "Thor",
             },
           ];
     }

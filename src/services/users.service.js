@@ -11,8 +11,9 @@ class UsersServices {
       return Users;
     };
   
-    getUsersById = async (id) => {
-
+    getUsersById = async (id) => {      
+      const Users = await this.model.getUsersById(id);
+      return Users;
     };
 
     postUser = async (user) => {

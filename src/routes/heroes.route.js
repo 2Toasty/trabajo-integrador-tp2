@@ -8,9 +8,9 @@ class HeroesRouter {
     }
   
     start() {
-      this.router.get("/heroes", this.controller.getHeroes);
-      this.router.get("/heroes/:id", this.controller.getHeroesById);
-      this.router.post("/heroes", this.controller.postHeroe);
+      this.router.get("/get", this.controller.getHeroes);
+      this.router.get("/get/:id", this.controller.getHeroesById);
+      this.router.post("/add", this.controller.postHeroe);
 
       return this.router;
     }

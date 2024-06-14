@@ -11,14 +11,20 @@ class UsersController {
     };
   
     getUsersById = async (req, res) => {
-
+      const { id } = req.params;
+      const Users = await this.services.getUsersById(id);
+      res.send(Users);
     };
 
     postUser = async (req, res) => {
       const newUser = req.body
-      const prod = await this.services.postUser(newUser)
-      //Solo el controlador maneja la respuesta del servidor
-      res.send(prod)
+      const result = await this.services.postUser(newUser)
+
+      if(result.acknowledged == true){
+        console.log("envio un mail")
+      }
+
+      res.send(result)
     };
 }
   

@@ -2,7 +2,6 @@ import MongoConnection from "../MongoConnection.js"
 
 class HeroesModelMongoDB {
     constructor() {
-
     }
 
     getHeroes = async () => {
@@ -11,7 +10,8 @@ class HeroesModelMongoDB {
     };
   
     getHeroesById = async (id) => {
-
+      const Heroes = await MongoConnection.db.collection("heroes").find({id : id}).toArray()
+      return Heroes;
     };
 
     postHeroe = async (prod) => {

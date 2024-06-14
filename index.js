@@ -2,8 +2,6 @@ import express from "express";
 import HeroesRouter from "./src/routes/heroes.route.js";
 import UsersRouter from "./src/routes/users.route.js";
 import MongoConnection from "./src/models/MongoConnection.js"
-import ModelFactory from './src/models/DAO/Factory.js';
-import config from "./config.js";
 
 const app = express();
 const PORT = 8080;

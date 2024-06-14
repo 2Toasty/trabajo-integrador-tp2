@@ -11,7 +11,9 @@ class HeroesController {
     };
   
     getHeroesById = async (req, res) => {
-
+      const { id } = req.params;
+      const Heroes = await this.services.getHeroesById(id);
+      res.send(Heroes);
     };
 
     postHeroe = async (req, res) => {
