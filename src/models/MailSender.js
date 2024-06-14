@@ -10,7 +10,7 @@ class MailSender {
         mailOptions.to = userEmail;
 
         const transporter = nodemailer.createTransport(config.TRANSPORTER_INFO);
-
+        
         transporter.sendMail(mailOptions, function(error, info){
           if (error) {
             console.log('Error:', error);

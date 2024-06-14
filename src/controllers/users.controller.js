@@ -22,6 +22,7 @@ class UsersController {
       const result = await this.services.postUser(newUser)
 
       if(result.acknowledged == true){
+        console.log("voy a enviar el mail a ")
         MailSender.sendMail(req.body.mail);
       }
 
