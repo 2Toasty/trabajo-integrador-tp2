@@ -38,7 +38,6 @@ to: 'xx',
 subject: 'Bienvenido a la SuperHeroe API!',
 text: 'Te has logueado correctamente'
 };
-  
 
 export default{
     PORT,

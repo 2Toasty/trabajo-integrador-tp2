@@ -10,6 +10,7 @@ class HeroesRouter {
     start() {
       this.router.get("/get", this.controller.getHeroes);
       this.router.get("/get/:id", this.controller.getHeroesById);
+      this.router.get("/fight/:id", this.controller.fightWithHeroe);
       this.router.post("/add", this.controller.postHeroe);
 
       return this.router;

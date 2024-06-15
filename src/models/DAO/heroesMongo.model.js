@@ -11,7 +11,7 @@ class HeroesModelMongoDB {
   
     getHeroesById = async (id) => {
       const Heroes = await MongoConnection.db.collection("heroes").find({id : id}).toArray()
-      return Heroes;
+      return Heroes[0];
     };
 
     postHeroe = async (prod) => {
