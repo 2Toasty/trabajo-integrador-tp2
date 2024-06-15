@@ -20,6 +20,11 @@ class HeroesServices {
       const result = await this.model.postHeroe(heroe)
       return result
     }; 
+
+    // deleteHero = async (_id) => {
+    //   const deleteHero = await this.model.deleteHero(_id);
+    //   return deleteHero;
+    // }
   }
   
   export default HeroesServices;
