@@ -36,7 +36,6 @@ class HeroesModelMongoDB {
   };
 
   postHeroe = async (prod) => {
-    console.log("lengh string ", prod.length);
     if (!prod.nombre || prod.nombre.trim() === "") {
       throw new Error("Error: El campo nombre no puede estar vacío.");
     }
@@ -58,15 +57,11 @@ class HeroesModelMongoDB {
   deleteHeroe = async (_id) => {
     let objectId;
     objectId = new ObjectId(_id);
-    const hero = await MongoConnection.db
-      .collection("heroes")
-      .findOne({ _id: objectId });
+    const hero = await MongoConnection.db.collection("heroes").findOne({ _id: objectId });
     if (!hero) {
       throw new Error("Error: el héroe con ese ID no existe.");
     } else {
-      const result = await MongoConnection.db
-        .collection("heroes")
-        .deleteOne({ _id: objectId });
+      const result = await MongoConnection.db.collection("heroes").deleteOne({ _id: objectId });
       return result;
     }
   };
