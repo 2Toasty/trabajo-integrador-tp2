@@ -56,7 +56,8 @@ class HeroesController {
     try {
       const newHeroe = req.body;
       const result = await this.services.postHeroe(newHeroe);
-      res.send(
+      res.status(201).send(   // creado para que funcione el test
+      // res.send(  // original
         `Felicidades!! se agrego a ${newHeroe.nombre} a la lista de HEROES`
       );
     } catch (error) {

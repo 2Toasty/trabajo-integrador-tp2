@@ -51,7 +51,7 @@ class HeroesModelMongoDB {
     const newHeroe = await MongoConnection.db
       .collection("heroes")
       .insertOne(heroToInsert);
-    return newHeroe;
+    return newHeroe; 
   };
 
   deleteHeroe = async (_id) => {

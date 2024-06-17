@@ -48,7 +48,8 @@ class UsersController {
         console.log("voy a enviar el mail a ");
         MailSender.sendMail(req.body.mail);
       }
-      res.send(result);
+       res.status(201).send(result); // creado para que funcione el test
+      // res.send(result); // original
     } catch (error) {
       console.log("Ocurrio un " + error);
       res.send({

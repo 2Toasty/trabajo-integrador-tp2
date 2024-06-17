@@ -53,8 +53,9 @@ class UsersModelMongoDB {
     const newUser = await MongoConnection.db
       .collection("users")
       .insertOne(userToInsert);
-      console.log('tipo dato id',typeof newUser.id);
-    return newUser;
+      console.log('tipo dato id',typeof userToInsert.id); // typeof newUser.id no te daba nada por que el resultado de pegarle a mongo es un acknowledged y un insertedId 
+    // return newUser; // original
+    return userToInsert; // creado para que funcione el test
     }
     
     deleteUser = async (_id) => {
