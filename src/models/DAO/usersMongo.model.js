@@ -58,6 +58,23 @@ class UsersModelMongoDB {
     return userToInsert; // creado para que funcione el test
     }
     
+    changeUserMailById = async (id, newMail) => {
+      let objectId;
+      try {
+        objectId = new ObjectId(id);
+      } catch (error) {
+        throw new Error("Error: el ID proporcionado no es válido.");
+      }
+      const userUpdate = await MongoConnection.db.collection("users").updateOne(
+        { id: objectId },
+        { $set: { mail: newName } }
+      );
+      if (userUpdate.modifiedCount === 0) {
+        throw new Error("Error: no se encontró ningún Usuario con ese ID.");
+      }
+      return userUpdate;
+    }
+
     deleteUser = async (_id) => {
       let objectId;
       objectId = new ObjectId(_id);

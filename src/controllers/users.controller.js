@@ -57,6 +57,18 @@ class UsersController {
       });
     }
   };
+
+  changeUserMailById = async (req,res) => {
+    try{
+      const { id } = req.params;
+      const newMail = req.body;
+      const nuevoNombre = await this.services.changeUserMailById(id,newMail);
+      res.send(newMail)
+    } catch(error){
+      console.log(error)
+    }
+  };
+
   deleteUser = async (req, res) => {
     try {
       const { _id } = req.params;

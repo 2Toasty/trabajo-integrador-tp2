@@ -21,6 +21,11 @@ class HeroesServices {
     return result;
   };
 
+  changeHeroNameById = async (id, newName) =>{
+    const result = await this.model.changeHeroNameById(id,newName)
+    return result;
+  };
+
   deleteHeroe = async (_id) => {
     const deleteHero = await this.model.deleteHeroe(_id);
     return deleteHero;

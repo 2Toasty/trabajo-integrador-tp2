@@ -90,6 +90,22 @@ class HeroesController {
     return message;
   }
 
+  changeHeroNameById = async (req,res) => {
+    try{
+      const { id } = req.params;
+      const newName = req.body;
+      const nuevoNombre = await this.services.changeHeroNameById(id,newName);
+      res.send(nuevoNombre)
+    } catch(error){
+      console.log("error :" + error);
+      res.send({
+        statuscode: 401,
+        message:
+          "El Id ingresado no es válido o el Nombre ingresado no tiene formato válido",
+      });
+    }
+  }
+
   deleteHeroe = async (req, res) => {
     try {
       const { _id } = req.params;

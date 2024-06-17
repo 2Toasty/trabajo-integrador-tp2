@@ -18,8 +18,14 @@ class UsersServices {
 
     postUser = async (user) => {
       const User = await this.model.postUser(user)
-      return User
+      return User;
     };
+
+    changeUserMailById = async(id, newMail) =>{
+      const user = await this.model.changeUserMailById(id,newMail)
+      return user;
+    };
+
     deleteUser = async (_id) => {
       const deleteUser = await this.model.deleteUser(_id)
       return deleteUser

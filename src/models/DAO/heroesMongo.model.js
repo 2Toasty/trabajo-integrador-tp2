@@ -53,6 +53,42 @@ class HeroesModelMongoDB {
     return newHeroe; 
   };
 
+
+  
+  changeHeroNameById = async (id, newName) => {
+    const array = await MongoConnection.db
+    .collection("heroes")
+    .find({})
+    .toArray();
+    if(id>array.length){
+      throw new Error("El número de ID ingresado es mayor a la cantidad de elementos de esta lista.")
+    }
+    const simbolosComunes = [
+      "!","@","#","$","%","^","&","*","(",")","-",
+      "_","=","+","[","]","{","}","\\","|",";","~",
+      ":","'",'"',",",".","/","<",">","?","`"
+    ];
+    for (let char of id) {
+      if (simbolosComunes.includes(char)) {
+        throw new Error("ERROR, el ID contiene caracteres no permitidos.");
+      }
+    }
+    if(id<=0){
+    throw new Error ("El ID no es válido.")
+  }
+  if(!newName){
+    throw new Error ("El campo del Nombre no puede estar vacio.")
+  }
+    const nuevoId =  parseInt(String(id))
+       const updateName = await MongoConnection.db.collection("heroes").updateOne(
+         { id: nuevoId },
+         { $set: {nombre: newName.nombre}  }
+      );
+      return updateName;
+  };
+  
+  
+
   deleteHeroe = async (_id) => {
     let objectId;
     objectId = new ObjectId(_id);
