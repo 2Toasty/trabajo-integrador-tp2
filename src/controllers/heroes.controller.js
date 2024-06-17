@@ -56,8 +56,7 @@ class HeroesController {
     try {
       const newHeroe = req.body;
       const result = await this.services.postHeroe(newHeroe);
-      res.status(201).send(   // creado para que funcione el test
-      // res.send(  // original
+      res.status(201).send(
         `Felicidades!! se agrego a ${newHeroe.nombre} a la lista de HEROES`
       );
     } catch (error) {
@@ -70,6 +69,7 @@ class HeroesController {
   };
 
   fightRandomHeroe = async (hero) => {
+
     const enemy = await this.heroesApi.getRamdomHeroe();
     const myHeroPower = Math.floor(Math.random() * 600);
 

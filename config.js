@@ -1,22 +1,10 @@
 const PORT = 8080;
 const PERSISTENCE = 'MONGO';
 const DBSTR = 'mongodb+srv://admin:admin@clusterhero.cj1whxa.mongodb.net/?retryWrites=true&w=majority&appName=ClusterHero'
-
 const BASE = 'integradortp2'
+
 const EMAIL = 'superheroapiort@gmail.com';
 const PASS = 'ettqbuympzdrjwol';
-
-const TRANSPORTER_INFO_TEST = {
-    host: 'sandbox.smtp.mailtrap.io',
-    port: 587,
-    auth: {
-    user: '30bd23c4628197',
-    pass: '8bf9d37f4b4d15',
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-};
 
 const TRANSPORTER_INFO = {
     service: "gmail",

@@ -28,10 +28,9 @@ class HeroesModelMongoDB {
         throw new Error("ERROR, el ID contiene caracteres no permitidos.");
       }
     }
-    const Heroes = await MongoConnection.db
-      .collection("heroes")
-      .find({ id: id })
-      .toArray();
+    const stringId = parseInt(String(id));
+    const Heroes = await MongoConnection.db.collection("heroes").find({ id: stringId }).toArray();
+    
     return Heroes[0];
   };
 
