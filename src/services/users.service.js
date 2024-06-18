@@ -26,8 +26,8 @@ class UsersServices {
       return user;
     };
 
-    deleteUser = async (_id) => {
-      const deleteUser = await this.model.deleteUser(_id)
+    deleteUser = async (id) => {
+      const deleteUser = await this.model.deleteUser(id)
       return deleteUser
     }
   }

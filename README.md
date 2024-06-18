@@ -1,9 +1,10 @@
-# trabajo-integrador-tp2
+# Trabajo-Integrador-tp2
 
-# Importante!
-antes de correr el proyecto se debe agregar el archivo de configuracion con el siguiente formato:
+### Importante!
+Antes de correr el proyecto se debe agregar el archivo de configuracion con el siguiente formato:
 
 
+```js
 const PORT = ****;
 const PERSISTENCE = '******';
 const DBSTR = '******'
@@ -41,3 +42,4 @@ export default{
     TRANSPORTER_INFO,
     LOGIN_MAIL_OPTIONS
 }
+```

@@ -33,6 +33,8 @@ class UsersModelMongoDB {
       return Users;
   };
 
+
+
     postUser = async (user) => {
     if (!user.nombre || user.nombre.trim() === "" || !user.mail || user.mail.trim() === "") {
       throw new Error("El campo nombre/mail no pueden estar vacíos.");
@@ -55,34 +57,43 @@ class UsersModelMongoDB {
       .insertOne(userToInsert);
       console.log('tipo dato id',typeof userToInsert.id); // typeof newUser.id no te daba nada por que el resultado de pegarle a mongo es un acknowledged y un insertedId 
     // return newUser; // original
-    return userToInsert; // creado para que funcione el test
+    return { acknowledged: newUser.acknowledged, nombre: userToInsert.nombre, mail: userToInsert.mail ,id: userToInsert.id}; // creado para que funcione el test
     }
     
     changeUserMailById = async (id, newMail) => {
-      let objectId;
-      try {
-        objectId = new ObjectId(id);
-      } catch (error) {
-        throw new Error("Error: el ID proporcionado no es válido.");
+      const array = await MongoConnection.db
+      .collection("users")
+      .find({})
+      .toArray();
+      if(id>array.length){
+        throw new Error("El número de ID ingresado es mayor a la cantidad de elementos de esta lista.")
       }
-      const userUpdate = await MongoConnection.db.collection("users").updateOne(
-        { id: objectId },
-        { $set: { mail: newName } }
-      );
-      if (userUpdate.modifiedCount === 0) {
-        throw new Error("Error: no se encontró ningún Usuario con ese ID.");
-      }
-      return userUpdate;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(newMail.mail)) {
+        throw new Error("El email proporcionado no es válido.");
     }
+      if(id<=0){
+      throw new Error ("El ID no es válido.")
+    }
+    if(!newMail){
+      throw new Error ("El campo del Mail no puede estar vacio.")
+    }
+      const nuevoId =  parseInt(String(id))
+         const updateMail = await MongoConnection.db.collection("users").updateOne(
+           { id: nuevoId },
+           { $set: {mail: newMail.mail}  }
+        );
+        return updateMail;
+    };
 
-    deleteUser = async (_id) => {
-      let objectId;
-      objectId = new ObjectId(_id);
-      const hero = await MongoConnection.db.collection("users").findOne({ _id: objectId });
-      if (!hero) {
+
+    deleteUser = async (id) => {
+      const stringId = parseInt(String(id));
+      const user = await MongoConnection.db.collection("users").findOne({ id: stringId });
+      if (!user) {
         throw new Error("El usuario con ese id no existe.");
       } else {
-        const result = await MongoConnection.db.collection("users").deleteOne({ _id: objectId });
+        const result = await MongoConnection.db.collection("users").deleteOne({ id: stringId });
         return result;
       }
     }

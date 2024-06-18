@@ -6,6 +6,17 @@ const path = supertest("http://127.0.0.1:8080");
 const generator = new RandomDataGenerator();
 
 describe('Test con Faker para Usuarios', () => {
+
+  let userId;
+
+  afterEach(async () => {
+    if(userId) {
+      await path.delete(`/api/users/delete/${userId}`)
+      userId = null;
+    }
+  })
+
+
   it('Obtener datos de usuarios con Faker', () => {
     const user = generator.generateRandomUser();
     expect(user).to.be.an('object');
@@ -23,6 +34,10 @@ describe('Test con Faker para Usuarios', () => {
     const response = await path.post("/api/users/add").send(user);
     expect(response.status).to.equal(201);
     const newUser = response.body;
-    expect(newUser).to.include.keys("nombre", "mail");
+    expect(newUser).to.be.an('object');
+    expect(newUser).to.have.property('mail');
+    expect(newUser).to.have.property('nombre');
+    expect(newUser).to.have.property('id');
+    userId = newUser.id; 
   });
 });

@@ -50,11 +50,9 @@ class HeroesModelMongoDB {
     const newHeroe = await MongoConnection.db
       .collection("heroes")
       .insertOne(heroToInsert);
-    return newHeroe; 
+    return heroToInsert; 
   };
 
-
-  
   changeHeroNameById = async (id, newName) => {
     const array = await MongoConnection.db
     .collection("heroes")
@@ -86,20 +84,29 @@ class HeroesModelMongoDB {
       );
       return updateName;
   };
-  
-  
 
-  deleteHeroe = async (_id) => {
-    let objectId;
-    objectId = new ObjectId(_id);
-    const hero = await MongoConnection.db.collection("heroes").findOne({ _id: objectId });
+
+  deleteHeroe = async (id) => {
+    const stringId = parseInt(String(id));
+    const hero = await MongoConnection.db.collection("heroes").findOne({ id: stringId });
     if (!hero) {
       throw new Error("Error: el héroe con ese ID no existe.");
     } else {
-      const result = await MongoConnection.db.collection("heroes").deleteOne({ _id: objectId });
+      const result = await MongoConnection.db.collection("heroes").deleteOne({ id: stringId });
       return result;
     }
   };
+
+  deleteAllHeroes = async () => {
+    const result = await MongoConnection.db.collection("heroes").deleteMany({});
+    if (result.deletedCount === 0) {
+      throw new Error("No se encontraron héroes para eliminar.");
+    }
+    return result;
+  };
+
 }
+
+
 
 export default HeroesModelMongoDB;

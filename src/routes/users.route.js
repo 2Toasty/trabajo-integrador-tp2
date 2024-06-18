@@ -11,8 +11,9 @@ class UsersRouter {
       this.router.get("/get", this.controller.getUsers);
       this.router.get("/get/:id", this.controller.getUsersById);
       this.router.post("/add", this.controller.postUser);
-      this.router.patch("/patch", this.controller.changeUserMailById);
-      this.router.delete("/delete/:_id",this.controller.deleteUser);
+      this.router.patch("/patch/:id", this.controller.changeUserMailById);
+      this.router.delete("/delete/:id",this.controller.deleteUser)
+      
       return this.router;
     }
   }
