@@ -55,17 +55,16 @@ class UsersModelMongoDB {
       .insertOne(userToInsert);
       console.log('tipo dato id',typeof userToInsert.id); // typeof newUser.id no te daba nada por que el resultado de pegarle a mongo es un acknowledged y un insertedId 
     // return newUser; // original
-    return userToInsert; // creado para que funcione el test
+    return { acknowledged: newUser.acknowledged, nombre: userToInsert.nombre, mail: userToInsert.mail ,id: userToInsert.id}; // creado para que funcione el test
     }
     
-    deleteUser = async (_id) => {
-      let objectId;
-      objectId = new ObjectId(_id);
-      const hero = await MongoConnection.db.collection("users").findOne({ _id: objectId });
-      if (!hero) {
+    deleteUser = async (id) => {
+      const stringId = parseInt(String(id));
+      const user = await MongoConnection.db.collection("users").findOne({ id: stringId });
+      if (!user) {
         throw new Error("El usuario con ese id no existe.");
       } else {
-        const result = await MongoConnection.db.collection("users").deleteOne({ _id: objectId });
+        const result = await MongoConnection.db.collection("users").deleteOne({ id: stringId });
         return result;
       }
     }

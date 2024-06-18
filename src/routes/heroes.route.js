@@ -12,7 +12,8 @@ class HeroesRouter {
       this.router.get("/get/:id", this.controller.getHeroesById);
       this.router.get("/fight/:id", this.controller.fightWithHeroe);
       this.router.post("/add", this.controller.postHeroe);
-      this.router.delete("/delete/:_id", this.controller.deleteHeroe);
+      this.router.delete("/delete/:id", this.controller.deleteHeroe);
+      this.router.delete("/deleteAll",this.controller.deleteAllHeroes);
 
       return this.router;
     }

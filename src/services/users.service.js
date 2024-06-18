@@ -20,8 +20,8 @@ class UsersServices {
       const User = await this.model.postUser(user)
       return User
     };
-    deleteUser = async (_id) => {
-      const deleteUser = await this.model.deleteUser(_id)
+    deleteUser = async (id) => {
+      const deleteUser = await this.model.deleteUser(id)
       return deleteUser
     }
   }

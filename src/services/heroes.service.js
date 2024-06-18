@@ -21,9 +21,14 @@ class HeroesServices {
     return result;
   };
 
-  deleteHeroe = async (_id) => {
-    const deleteHero = await this.model.deleteHeroe(_id);
+  deleteHeroe = async (id) => {
+    const deleteHero = await this.model.deleteHeroe(id);
     return deleteHero;
+  };
+
+  deleteAllHeroes = async () => {
+    const result = await this.model.deleteAllHeroes();
+    return result;
   };
 }
 

@@ -56,9 +56,11 @@ class HeroesController {
     try {
       const newHeroe = req.body;
       const result = await this.services.postHeroe(newHeroe);
-      res.status(201).send(
-        `Felicidades!! se agrego a ${newHeroe.nombre} a la lista de HEROES`
-      );
+      res.status(201).send({
+        message: `Felicidades!! Se agregó a ${result.nombre} a la lista de HÉROES`,
+        nombre: result.nombre,
+        id: result.id
+      });
     } catch (error) {
       console.log("error :" + error);
       res.send({
@@ -92,8 +94,8 @@ class HeroesController {
 
   deleteHeroe = async (req, res) => {
     try {
-      const { _id } = req.params;
-      const heroDelete = await this.services.deleteHeroe(_id);
+      const { id } = req.params;
+      const heroDelete = await this.services.deleteHeroe(id);
       res.send(`OPERACION EXITOSA!! Se elimino de forma satisfactoria`);
     } catch (error) {
       console.log("error :" + error);
@@ -104,6 +106,20 @@ class HeroesController {
       });
     }
   };
+
+  deleteAllHeroes = async (req, res) => {
+    try {
+      const result = await this.services.deleteAllHeroes();
+      res.send(`OPERACION EXITOSA!! Se eliminaron ${result.deletedCount} héroes de la lista.`);
+    } catch (error) {
+      console.log("error :" + error);
+      res.send({
+        statuscode: 401,
+        message: "Error al intentar eliminar todos los héroes. Vuelva a intentarlo.",
+      });
+    }
+  };
+
 }
 
 export default HeroesController;

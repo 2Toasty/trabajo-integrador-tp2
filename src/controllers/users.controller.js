@@ -45,10 +45,16 @@ class UsersController {
       const result = await this.services.postUser(newUser);
 
       if (result.acknowledged == true) {
-        console.log("voy a enviar el mail a ");
+        console.log(`voy a enviar el mail a ${result.nombre} con mail ${result.mail}`);
         MailSender.sendMail(req.body.mail);
       }
-       res.status(201).send(result); 
+       res.status(201).send({
+        acknowledged: result.acknowledged,
+        nombre: result.nombre,
+        mail: result.mail,
+        id: result.id
+    
+      }) 
     } catch (error) {
       console.log("Ocurrio un " + error);
       res.send({
@@ -59,8 +65,8 @@ class UsersController {
   };
   deleteUser = async (req, res) => {
     try {
-      const { _id } = req.params;
-      const userDelete = await this.services.deleteUser(_id);
+      const { id } = req.params;
+      const userDeleted = await this.services.deleteUser(id);
       res.send("Se elimino sactifactoriamente..");
     } catch (error) {
       console.log("Ocurrio un " + error);
